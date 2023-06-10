@@ -27,15 +27,18 @@ public class Ranger extends Player
     public void defend()
     {
         System.out.println("*dives in bush*");
+        addAblativeHp(1);
     }
 
     /**
      * Attacks using a bow like a coward.
+     * 5 base damage.
      */
     @Override
-    public void attack()
+    public int attack()
     {
         System.out.println("*shoots bow*");
+        return 5;
     }
     
 }

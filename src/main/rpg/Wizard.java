@@ -26,6 +26,7 @@ public class Wizard extends Player
     public void defend()
     {
         System.out.println("*Summons magic barrier*");
+        addAblativeHp(10);
     }
 
     /**
@@ -33,8 +34,9 @@ public class Wizard extends Player
      * I'm sure there won't be collateral damage.
      */
     @Override
-    public void attack()
+    public int attack()
     {
         System.out.println("*casts fireball*");
+        return 5;
     }
 }

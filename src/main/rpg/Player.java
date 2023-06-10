@@ -14,6 +14,21 @@ public abstract class Player
     private String name;
 
     /**
+     * The player's hitpoints.
+     */
+    private int hp;
+
+    /**
+     * Extra hitpoints that absorb damage.
+     */
+    private int ablativeHp;
+
+    /**
+     * The player's current stance.
+     */
+    private Stance stance;
+
+    /**
      * Constructs a new Player.
      * 
      * @param name the player's name
@@ -21,6 +36,9 @@ public abstract class Player
     public Player(String name)
     {
         this.name = name;
+        this.hp = 100;
+        this.ablativeHp = 0;
+        this.stance = Stance.NEUTRAL;
     }
 
     /**
@@ -34,12 +52,110 @@ public abstract class Player
     }
 
     /**
+     * Getter for the player's hitpoints.
+     * @return hp
+     */
+    public int getHitpoints()
+    {
+        return this.hp;
+    }
+
+    /**
+     * Getter for the player's ablative hitpoints.
+     * @return ablativeHp
+     */
+    public int getAblativeHitpoints()
+    {
+        return this.ablativeHp;
+    }
+
+    /**
+     * Getter for the player's stance.
+     * 
+     * @return the player's stance
+     */
+    public Stance getStance()
+    {
+        return this.stance;
+    }
+
+    /**
+     * Sets the player's stance.
+     * 
+     * @param stance the new player stance
+     */
+    public void setStance(Stance stance)
+    {
+        this.stance = stance;
+    }
+
+    /**
+     * Takes damage from something.
+     * In the attack stance damage is multiplied by 2.
+     * In the defence stance damage is divided by 2;
+     * The player will revert to the neutral stance after taking damage.
+     * @param dmg
+     */
+    public void takeDamage(int dmg)
+    {
+        int totalDmg = dmg;
+        switch (stance)
+        {
+            case ATTACK:
+                totalDmg *= 2;
+                break;
+            case DEFENCE:
+                totalDmg /= 2;
+                break;
+            case NEUTRAL:
+        }
+        if (this.ablativeHp > totalDmg)
+        {
+            this.ablativeHp -= totalDmg;
+        }
+        else if (this.ablativeHp > 0)
+        {
+            totalDmg -= this.ablativeHp;
+            this.ablativeHp = 0;
+            this.hp -= totalDmg;
+        }
+        else
+        {
+            this.hp -= totalDmg;
+        }
+        stance = Stance.NEUTRAL;
+    }
+
+    /**
+     * Checks if the player has passed out.
+     * The player passes out if their hp hits 0.
+     * 
+     * @return true if the player is passed out. false otherwise.
+     */
+    public boolean passedOut()
+    {
+        return this.hp <= 0;
+    }
+
+    /**
+     * Adds ablative hitpoints to the current amount.
+     * 
+     * @param ablativeHp the amount of ablative hitpoints to add
+     */
+    public void addAblativeHp(int ablativeHp)
+    {
+        this.ablativeHp += ablativeHp;
+    }
+
+    /**
      * How the player defends.
      */
     public abstract void defend();
 
     /**
      * How the player attacks.
+     * 
+     * @return the number of damage caused.
      */
-    public abstract void attack();
+    public abstract int attack();
 }
