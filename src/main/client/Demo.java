@@ -38,16 +38,16 @@ public class Demo
      */
     public static void randomBrawl(ArrayList<Player> players)
     {
-        while (!onlyOneLeft(players))
+        while (players.size() > 1)
         {
-            int currPlayer = (int) (Math.random() * 3);
+            int currPlayer = (int) (Math.random() * players.size());
             Player player = players.get(currPlayer);
             if (Math.random() > .5)
             {
-                int target = (int) (Math.random() * 3);
+                int target = (int) (Math.random() * players.size());
                 while (target == currPlayer)
                 {
-                    target = (int) (Math.random() * 3);
+                    target = (int) (Math.random() * players.size());
                 }
                 System.out.printf("%s attacks!\n", player.getName());
                 int dmg = player.attack();
@@ -56,6 +56,10 @@ public class Demo
                 System.out.printf("%s is injured for %d hp!\n",
                     players.get(target).getName(),
                     initHp - players.get(target).getHitpoints());
+                if (players.get(target).passedOut())
+                {
+                    players.remove(target);
+                }
             }
             else
             {
@@ -71,24 +75,5 @@ public class Demo
                 System.out.printf("Player %s won!\n", p.getName());
             }
         }
-    }
-
-    /**
-     * Checks if only one player is above 0 hp.
-     * 
-     * @param players the list of players to check
-     * @return true if only one player is left. false otherwise.
-     */
-    public static boolean onlyOneLeft(ArrayList<Player> players)
-    {
-        int numLeft = 0;
-        for (Player p : players)
-        {
-            if (!p.passedOut())
-            {
-                numLeft++;
-            }
-        }
-        return numLeft <= 1;
     }
 }
