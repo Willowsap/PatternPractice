@@ -16,27 +16,18 @@ public class Warrior extends Player
     public Warrior(String name)
     {
         super(name);
+        setAttackType(new AttackWithSword());
     }
 
     /**
      * Defends by raising a shield.
-     * So basic. 10 ablative hp.
+     * So basic. 5 ablative hp.
      */
     @Override
     public void defend()
     {
         System.out.println("*raises shield*");
+        this.setStance(Stance.DEFENCE);
         addAblativeHp(5);
-    }
-
-    /**
-     * Attacks with a sword.
-     * So basic. 5 dmg.
-     */
-    @Override
-    public int attack()
-    {
-        System.out.println("*swings sword*");
-        return 5;
     }
 }

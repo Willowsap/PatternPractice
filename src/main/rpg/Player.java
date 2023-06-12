@@ -9,6 +9,11 @@ package rpg;
 public abstract class Player
 {
     /**
+     * The way the player attacks.
+     */
+    private AttackType attackType;
+
+    /**
      * The player's name.
      */
     private String name;
@@ -158,5 +163,19 @@ public abstract class Player
      * 
      * @return the number of damage caused.
      */
-    public abstract int attack();
+    public int attack()
+    {
+        this.stance = Stance.ATTACK;
+        return attackType.attack();
+    }
+
+    /**
+     * Setter for the player's attack type.
+     * 
+     * @param attackType the new attack type
+     */
+    public void setAttackType(AttackType attackType)
+    {
+        this.attackType = attackType;
+    }
 }

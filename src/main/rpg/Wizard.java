@@ -16,6 +16,7 @@ public class Wizard extends Player
     public Wizard(String name)
     {
         super(name);
+        setAttackType(new AttackWithMagic());
     }
 
     /**
@@ -26,17 +27,7 @@ public class Wizard extends Player
     public void defend()
     {
         System.out.println("*Summons magic barrier*");
+        this.setStance(Stance.DEFENCE);
         addAblativeHp(10);
-    }
-
-    /**
-     * Attacks with a fireball.
-     * I'm sure there won't be collateral damage.
-     */
-    @Override
-    public int attack()
-    {
-        System.out.println("*casts fireball*");
-        return 5;
     }
 }

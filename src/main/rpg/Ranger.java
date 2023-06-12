@@ -17,6 +17,7 @@ public class Ranger extends Player
     public Ranger(String name)
     {
         super(name);
+        setAttackType(new AttackWithBow());
     }
 
     /**
@@ -28,17 +29,6 @@ public class Ranger extends Player
     {
         System.out.println("*dives in bush*");
         addAblativeHp(1);
+        this.setStance(Stance.DEFENCE);
     }
-
-    /**
-     * Attacks using a bow like a coward.
-     * 5 base damage.
-     */
-    @Override
-    public int attack()
-    {
-        System.out.println("*shoots bow*");
-        return 5;
-    }
-    
 }
