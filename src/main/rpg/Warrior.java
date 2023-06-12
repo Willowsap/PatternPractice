@@ -16,7 +16,7 @@ public class Warrior extends Player
     public Warrior(String name)
     {
         super(name);
-        setAttackType(new AttackWithSword());
+        switchAttackType(new AttackWithSword());
     }
 
     /**
@@ -28,6 +28,12 @@ public class Warrior extends Player
     {
         System.out.println("*raises shield*");
         this.setStance(Stance.DEFENCE);
-        addAblativeHp(5);
+        addAblativeHp(2);
+    }
+
+    @Override
+    public AttackType getBackupAttack()
+    {
+        return new AttackWithFist();
     }
 }

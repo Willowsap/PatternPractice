@@ -129,6 +129,10 @@ public abstract class Player
         {
             this.hp -= totalDmg;
         }
+        if (this.hp < 50)
+        {
+            switchAttackType(getBackupAttack());
+        }
         stance = Stance.NEUTRAL;
     }
 
@@ -159,6 +163,13 @@ public abstract class Player
     public abstract void defend();
 
     /**
+     * Gets the players backup attack for when they are low on health.
+     * 
+     * @return the backup attack type
+     */
+    public abstract AttackType getBackupAttack();
+
+    /**
      * How the player attacks.
      * 
      * @return the number of damage caused.
@@ -174,7 +185,7 @@ public abstract class Player
      * 
      * @param attackType the new attack type
      */
-    public void setAttackType(AttackType attackType)
+    public void switchAttackType(AttackType attackType)
     {
         this.attackType = attackType;
     }

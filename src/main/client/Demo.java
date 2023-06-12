@@ -3,6 +3,7 @@ package client;
 import java.util.ArrayList;
 import rpg.Player;
 import rpg.Ranger;
+import rpg.Rogue;
 import rpg.Warrior;
 import rpg.Wizard;
 
@@ -25,6 +26,7 @@ public class Demo
         players.add(new Wizard("Altea"));
         players.add(new Warrior("Magnus"));
         players.add(new Ranger("Iseul"));
+        players.add(new Rogue("Tyler"));
         randomBrawl(players);
     }
 

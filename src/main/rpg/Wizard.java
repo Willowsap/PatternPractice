@@ -16,7 +16,7 @@ public class Wizard extends Player
     public Wizard(String name)
     {
         super(name);
-        setAttackType(new AttackWithMagic());
+        switchAttackType(new AttackWithMagic());
     }
 
     /**
@@ -28,6 +28,12 @@ public class Wizard extends Player
     {
         System.out.println("*Summons magic barrier*");
         this.setStance(Stance.DEFENCE);
-        addAblativeHp(10);
+        addAblativeHp(3);
+    }
+
+    @Override
+    public AttackType getBackupAttack()
+    {
+        return new AttackWithIce();
     }
 }
