@@ -1,6 +1,7 @@
 package client;
 
 import java.util.ArrayList;
+
 import rpg.Player;
 import rpg.Ranger;
 import rpg.Rogue;
@@ -68,12 +69,6 @@ public class Demo
             }
             System.out.println();
         }
-        for (Player p : players)
-        {
-            if (!p.passedOut())
-            {
-                System.out.printf("Player %s won!\n", p.getName());
-            }
-        }
+        System.out.printf("Player %s won!\n", players.get(0).getName());
     }
 }
