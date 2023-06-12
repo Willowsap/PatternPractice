@@ -28,6 +28,12 @@ public class Demo
         randomBrawl(players);
     }
 
+    /**
+     * Has all of the players perform random actions until
+     * only one remains.
+     * 
+     * @param players the players to participate
+     */
     public static void randomBrawl(ArrayList<Player> players)
     {
         while (!onlyOneLeft(players))
@@ -62,6 +68,12 @@ public class Demo
         }
     }
 
+    /**
+     * Checks if only one player is above 0 hp.
+     * 
+     * @param players the list of players to check
+     * @return true if only one player is left. false otherwise.
+     */
     public static boolean onlyOneLeft(ArrayList<Player> players)
     {
         int numLeft = 0;
