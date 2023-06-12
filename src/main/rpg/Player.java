@@ -94,7 +94,8 @@ public abstract class Player
      * In the attack stance damage is multiplied by 2.
      * In the defence stance damage is divided by 2;
      * The player will revert to the neutral stance after taking damage.
-     * @param dmg
+     * 
+     * @param dmg the amount of damage to take
      */
     public void takeDamage(int dmg)
     {

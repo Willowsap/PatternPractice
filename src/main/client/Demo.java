@@ -49,8 +49,11 @@ public class Demo
                 }
                 System.out.printf("%s attacks!\n", player.getName());
                 int dmg = player.attack();
+                int initHp = players.get(target).getHitpoints();
                 players.get(target).takeDamage(dmg);
-                System.out.printf("%s is injured for %d hp!\n", players.get(target).getName(), dmg);
+                System.out.printf("%s is injured for %d hp!\n",
+                    players.get(target).getName(),
+                    initHp - players.get(target).getHitpoints());
             }
             else
             {
