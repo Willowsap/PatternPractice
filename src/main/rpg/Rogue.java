@@ -6,14 +6,13 @@ public class Rogue extends Player
     {
         super(name);
         switchAttackType(new AttackWithSword());
+        switchDefendType(new DefendWithAgility());
     }
 
     @Override
-    public void defend()
+    public DefendType getBackupDefend()
     {
-        System.out.println("*vanishes*");
-        this.setStance(Stance.DEFENCE);
-        addAblativeHp(3);
+        return new DefendWithMagic();
     }
 
     @Override

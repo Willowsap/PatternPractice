@@ -17,18 +17,13 @@ public class Wizard extends Player
     {
         super(name);
         switchAttackType(new AttackWithMagic());
+        switchDefendType(new DefendWithMagic());
     }
 
-    /**
-     * Defends using magic.
-     * Pretty cool.
-     */
     @Override
-    public void defend()
+    public DefendType getBackupDefend()
     {
-        System.out.println("*Summons magic barrier*");
-        this.setStance(Stance.DEFENCE);
-        addAblativeHp(3);
+        return new DefendWithAgility();
     }
 
     @Override

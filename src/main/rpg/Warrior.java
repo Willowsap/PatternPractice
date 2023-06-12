@@ -17,18 +17,13 @@ public class Warrior extends Player
     {
         super(name);
         switchAttackType(new AttackWithSword());
+        switchDefendType(new DefendWithShield());
     }
 
-    /**
-     * Defends by raising a shield.
-     * So basic. 5 ablative hp.
-     */
     @Override
-    public void defend()
+    public DefendType getBackupDefend()
     {
-        System.out.println("*raises shield*");
-        this.setStance(Stance.DEFENCE);
-        addAblativeHp(2);
+        return new DefendWithShield();
     }
 
     @Override

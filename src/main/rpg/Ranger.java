@@ -18,18 +18,13 @@ public class Ranger extends Player
     {
         super(name);
         switchAttackType(new AttackWithBow());
+        switchDefendType(new DefendWithAgility());
     }
 
-    /**
-     * Defends by diving in a bush.
-     * I assume that is what rangers do.
-     */
     @Override
-    public void defend()
+    public DefendType getBackupDefend()
     {
-        System.out.println("*dives in bush*");
-        addAblativeHp(1);
-        this.setStance(Stance.DEFENCE);
+        return new DefendWithShield();
     }
 
     @Override

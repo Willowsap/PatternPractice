@@ -14,6 +14,11 @@ public abstract class Player
     private AttackType attackType;
 
     /**
+     * The way the player defends.
+     */
+    private DefendType defendType;
+
+    /**
      * The player's name.
      */
     private String name;
@@ -132,6 +137,7 @@ public abstract class Player
         if (this.hp < 50)
         {
             switchAttackType(getBackupAttack());
+            switchDefendType(getBackupDefend());
         }
         stance = Stance.NEUTRAL;
     }
@@ -158,16 +164,18 @@ public abstract class Player
     }
 
     /**
-     * How the player defends.
-     */
-    public abstract void defend();
-
-    /**
      * Gets the players backup attack for when they are low on health.
      * 
      * @return the backup attack type
      */
     public abstract AttackType getBackupAttack();
+
+    /**
+     * Gets the players backup defend for when they are low on health.
+     * 
+     * @return the backup defend type
+     */
+    public abstract DefendType getBackupDefend();
 
     /**
      * How the player attacks.
@@ -181,6 +189,15 @@ public abstract class Player
     }
 
     /**
+     * How the player defends.
+     */
+    public void defend()
+    {
+        this.ablativeHp += defendType.defend();
+        this.setStance(Stance.DEFENCE);
+    }
+
+    /**
      * Setter for the player's attack type.
      * 
      * @param attackType the new attack type
@@ -188,5 +205,15 @@ public abstract class Player
     public void switchAttackType(AttackType attackType)
     {
         this.attackType = attackType;
+    }
+
+    /**
+     * Setter for the player's defend type.
+     * 
+     * @param attackType the new defend type
+     */
+    public void switchDefendType(DefendType defendType)
+    {
+        this.defendType = defendType;
     }
 }
