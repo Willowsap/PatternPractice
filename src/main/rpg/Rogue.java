@@ -1,7 +1,18 @@
 package rpg;
 
+/**
+ * A rogue rpg class.
+ * 
+ * @author Willow Sapphire
+ * @version 06/12/2023
+ */
 public class Rogue extends Player
 {
+    /**
+     * Constructs a new rogue.
+     * 
+     * @param name the rogue's name
+     */
     public Rogue(String name)
     {
         super(name);

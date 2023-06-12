@@ -178,13 +178,36 @@ public abstract class Player
     public abstract DefendType getBackupDefend();
 
     /**
+     * An option hook method for classes todo something after attacking.
+     */
+    public void postAttackActions()
+    {
+    }
+
+    /**
+     * Template method for how attacks are performed.
+     * 
+     * @param target the player being attacked
+     */
+    public final void performAttack(Player target)
+    {
+        setStance(Stance.ATTACK);
+        System.out.printf("%s attacks %s!\n", name, target.getName());
+        int dmg = attack();
+        int initHp = target.getHitpoints();
+        target.takeDamage(dmg);
+        System.out.printf("%s has been damaged for %d hitpoints\n", target.getName(),
+            initHp - target.getHitpoints());
+        postAttackActions();
+    }
+
+    /**
      * How the player attacks.
      * 
      * @return the number of damage caused.
      */
     public int attack()
     {
-        this.stance = Stance.ATTACK;
         return attackType.attack();
     }
 
@@ -210,7 +233,7 @@ public abstract class Player
     /**
      * Setter for the player's defend type.
      * 
-     * @param attackType the new defend type
+     * @param defendType the new defend type
      */
     public void switchDefendType(DefendType defendType)
     {

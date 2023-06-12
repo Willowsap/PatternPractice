@@ -45,19 +45,14 @@ public class Demo
             Player player = players.get(currPlayer);
             if (Math.random() > .5)
             {
-                int target = (int) (Math.random() * players.size());
-                while (target == currPlayer)
+                int targetIndex = (int) (Math.random() * players.size());
+                while (targetIndex == currPlayer)
                 {
-                    target = (int) (Math.random() * players.size());
+                    targetIndex = (int) (Math.random() * players.size());
                 }
-                System.out.printf("%s attacks!\n", player.getName());
-                int dmg = player.attack();
-                int initHp = players.get(target).getHitpoints();
-                players.get(target).takeDamage(dmg);
-                System.out.printf("%s is injured for %d hp!\n",
-                    players.get(target).getName(),
-                    initHp - players.get(target).getHitpoints());
-                if (players.get(target).passedOut())
+                Player target = players.get(targetIndex);
+                player.performAttack(target);
+                if (target.passedOut())
                 {
                     players.remove(target);
                 }
